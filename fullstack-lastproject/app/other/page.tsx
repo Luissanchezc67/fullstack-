@@ -4,12 +4,8 @@ import Image from "next/image";
 
 export default function Home() {
   return (
- <main>
-  <h1>Home Page</h1>
-  <p>area be restreact . . .</p>
-  <form className="mt-12" action={actionLogout}>
-      <Button>Exit</Button>
-  </form>
+ <main className="h-screen bg-red-300">
+  <h1>Another ONE Page</h1>
  </main>
   );
 }
