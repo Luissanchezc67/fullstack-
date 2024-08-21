@@ -22,7 +22,7 @@ function LoginPage() {
   return (
     <main className="h-screen flex flex-col justify-center items-center ">
       <form action={login}  className="flex flex-col items-start gap-4" >
-      <img
+          <img
             alt="Your Company"
             src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
             className="mx-auto h-10 w-auto"
@@ -45,15 +45,17 @@ function LoginPage() {
           onChange={clearMessage}
         ></Input>
 
-<div className="text-sm">
-                  <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
-                    Forgot password?
-                  </a>
+        <div className="text-sm">
+          <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+            Forgot password?
+          </a>
         </div>
 
         <input type="hidden" name="path" value={path || ""} />
-        <Button className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-               >Ready</Button>
+          <Button className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          >
+            Ready
+          </Button>
         <p className="text-red-500 h-12">{message} </p>
 
         
