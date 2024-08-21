@@ -4,9 +4,9 @@ import { actionLogin } from "@/actions/auth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { Suspense,useState } from "react";
 
-export default function Home() {
+function LoginPage() {
   const params = useSearchParams();
   const [message, setMessage] = useState("");
 
@@ -24,6 +24,13 @@ export default function Home() {
       <form action={login} className="flex flex-col items-start gap-2">
         <h1>READY FOR UR SESSION {path && `to ${path}`}</h1>
         <Input
+          type="text"
+          name="username"
+          placeholder="username"
+          onChange={clearMessage}
+        ></Input>
+
+        <Input
           type="password"
           name="password"
           placeholder="password"
@@ -35,5 +42,13 @@ export default function Home() {
         <p className="text-red-500 h-12">{message} </p>
       </form>
     </main>
+  );
+}
+
+export default function Page() {
+  return (
+    <Suspense>
+      <LoginPage />
+    </Suspense>
   );
 }
