@@ -1,7 +1,7 @@
 'use client';
 
 import Button from "@/app/components/Button";
-import Input from "@/app/components/inputs/input";
+import Input from "@/app/components/inputs/Input";
 import { useCallback, useState } from "react";
 import { FieldValues,
          SubmitHandler,
