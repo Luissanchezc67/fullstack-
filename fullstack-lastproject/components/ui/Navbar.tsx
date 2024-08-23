@@ -1,6 +1,7 @@
 import { actionLogout } from '@/actions/auth'
 import { Button, Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { useTransition } from 'react'
 
 const navigation = [
   { name: 'Dashboard', href: '#', current: true },
@@ -15,6 +16,24 @@ function classNames(...classes: string[]) {
 
 
 export default function Example() {
+  
+  const handleLogout = async () => {
+    // Envía la solicitud de logout al servidor
+    const response = await fetch('@/api/logout', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({})
+    });
+
+    if (response.ok) {
+      window.location.href = '/login'; // Redirigir al login después del logout
+    } else {
+      console.error('Error al cerrar sesión');
+    }
+  };
+
   return (
     <Disclosure as="nav" className="bg-gray-800 fixed left-0 top-0 w-full z-10">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -91,16 +110,26 @@ export default function Example() {
                     Settings
                   </a>
                 </MenuItem>
+                
                 <MenuItem  >
-                  <form className='block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100' action={actionLogout}>
-                    <Button>Sign out</Button>
-                  </form>
+             
+                <Button onClick={handleLogout} className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
+                    Sign out
+                  </Button>
                 </MenuItem>
+               
               </MenuItems>
             </Menu>
           </div>
         </div>
       </div>
+
+      <form
+        id="logout-form"
+        action="/api/logout"
+        method="POST"
+        className="hidden"
+      />
 
       <DisclosurePanel className="sm:hidden">
         <div className="space-y-1 px-2 pb-3 pt-2">
