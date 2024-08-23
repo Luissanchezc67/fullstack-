@@ -24,7 +24,7 @@ function LoginPage() {
       <form action={login}  className="flex flex-col items-start gap-4" >
           <img
             alt="Your Company"
-            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+            src="https://thumbs.dreamstime.com/b/superman-logo-vector-eps-format-file-design-isolated-blue-background-235402256.jpg"
             className="mx-auto h-10 w-auto"
           />
         <h1>READY FOR UR SESSION {path && `to ${path}`}</h1>
@@ -47,7 +47,7 @@ function LoginPage() {
 
         <div className="text-sm">
           <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
-            Forgot password?
+            U are new?
           </a>
         </div>
 
