@@ -7,10 +7,11 @@ export default function Home() {
         className="
         flex
         min-h-full
+        flex-col
         justify-center
         py-12
         sm:px-6
-        lg:px8
+        lg:px-8
         bg-gray-100
         "
     >
