@@ -7,6 +7,8 @@ import { FieldValues,
          SubmitHandler,
          useForm   
         } from "react-hook-form";
+import AuthSocialButton from "./AuthSocialButton";
+import { BsGithub, BsGoogle } from "react-icons/bs";
 
 
 
@@ -17,7 +19,7 @@ const AuthForm = () =>{
     const [variant, setVariant] = useState<Variant>('LOGIN');
     const [isloading, setIsLoading] = useState(false);
 
-    const taggleVariant = useCallback(() => {
+    const toggleVariant = useCallback(() => {
         if (variant == 'LOGIN'){
             setVariant('REGISTER');
         }else {
@@ -86,7 +88,8 @@ const socialAction = (action: string) =>{
                             id="name"
                             label="Name"
                             register={register} 
-                            errors={errors}  
+                            errors={errors} 
+                            disabled={isloading} 
                         />
                     )}
                     <Input 
@@ -94,14 +97,16 @@ const socialAction = (action: string) =>{
                             label="Email ADDRESS"
                             type="email"
                             register={register} 
-                            errors={errors}  
+                            errors={errors} 
+                            disabled={isloading} 
                         />
                          <Input 
                             id="password"
                             label="Password"
                             type="password"
                             register={register} 
-                            errors={errors}  
+                            errors={errors} 
+                            disabled={isloading}  
                         />
                         <div>
                             <Button
@@ -127,23 +132,61 @@ const socialAction = (action: string) =>{
                             className="
                                 w-full 
                                 border-t
-                                border-gray-300"
+                                border-gray-300
+                                "
                         />
 
                         </div>
                         <div 
                             className="
-                                relative-flex 
+                                relative
+                                flex 
                                 justify-center 
                                 text-sm">
-                            <span className="bg-white px-2 text-gray-500">
+                            <span 
+                                className="
+                                    bg-white 
+                                    px-2 
+                                    text-gray-500">
+                                        OR Continue With
 
                             </span>
                         </div>
 
                     </div>
-                </div>
 
+                    <div className="mt-6 flex gap-2"
+                    >
+                        <AuthSocialButton 
+                            icon={BsGithub}
+                            onClick={()=> socialAction('github')}
+                        />
+
+                        <AuthSocialButton 
+                            icon={BsGoogle}
+                            onClick={()=> socialAction('google')}
+                        />
+                    </div>
+                </div>
+                    <div className=" 
+                            flex
+                            gap-2
+                            justify-center
+                            text-sm
+                            mt-6
+                            px-2
+                            text-gray-500
+                            ">
+                                <div>
+                                    {variant == 'LOGIN' ? 'New to Messenger?' : 'Already have an account?' }
+                                </div>
+                                <div
+                                    onClick={toggleVariant}
+                                    className="underline cursor-pointer"
+                                >
+                                      {variant == 'LOGIN' ? 'Create an account' : 'Login' }
+                                </div>
+                    </div>
             </div>
         </div>
     );
