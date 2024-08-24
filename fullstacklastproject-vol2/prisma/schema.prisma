@@ -23,4 +23,68 @@ model User{
   hashedPassword String?
   createAt DateTime @default(now())
   updateAt DateTime @updatedAt
+
+  conversationsIds String[] @db.ObjectId
+  conversations Conversation[] @relation(fields: [conversationsIds], references: [id])
+
+
+  seenMessagesIds String[] @db.ObjectId
+  seenMessages Message[] @relation("Seen", fields: [seenMessagesIds], references: [id])
+
+
+  accounts Account[]
+  message Message[]
+}
+
+model Account {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String @db.ObjectId
+  type String
+  provider String
+  providerAccountId String
+  refresh_token String? @db.String
+  access_token String? @db.String
+  expire_at Int?
+  token_type String?
+  id_token String? @db.String
+  session_state String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@unique([provider,providerAccountId])
+}
+
+model Message {
+id String @id @default(auto()) @map("_id")@db.ObjectId
+body String?
+image String?
+createAt DateTime @default(now())
+
+
+seenIds String[] @db.ObjectId
+seen User[] @relation("Seen", fields: [seenIds], references: [id])
+
+
+conversationId String @db.ObjectId
+conversastion Conversation @relation(fields: [conversationId], references: [id])
+
+
+senderId String[] @db.ObjectId
+sender User @relation(fields: [senderId], references: [id], onDelete: Cascade)
+
+}
+
+model Conversation{
+id String @id @default(auto()) @map("_id")@db.ObjectId
+creatAt DateTime @default(now())
+lastMessageAt DateTime @default(now())
+name String?
+isGroup Boolean?
+
+
+messagesIds String[] @db.ObjectId
+messages Message[]
+
+userIds String[] @db.ObjectId
+users User[] @relation(fields: [userIds], references: [id])
+
 }
