@@ -10,6 +10,9 @@ import { FieldValues,
 import AuthSocialButton from "./AuthSocialButton";
 import { BsGithub, BsGoogle } from "react-icons/bs";
 import axios from "axios";
+import {toast} from "react-hot-toast"
+import { signIn } from "next-auth/react";
+import { sign } from "crypto";
 
 
 
@@ -48,16 +51,42 @@ const onSubmit: SubmitHandler<FieldValues> = (data) => {
 
     if (variant == 'REGISTER'){
       axios.post('/api/register', data)
+      .catch (() => toast.error('Something went wromg'))
+      .finally(() => setIsLoading(false))
     }
 
     if (variant == 'LOGIN'){
         //NextAuth Signin
+        signIn('credentials',{
+            ...data,
+            redirect: false
+        })
+        .then((callback) => {
+            if (callback?.error){
+                toast.error('Invalid Credentials');
+            }
+            if (callback?.ok && !callback?.error){
+                toast.success('logged in!')
+            }
+        })
+        .finally(() => setIsLoading(false));
     }
 
 }
 
 const socialAction = (action: string) =>{
     setIsLoading(true);
+
+    signIn(action, { redirect: false })
+    .then((callback) => {
+        if (callback?.error){
+            toast.error('Invalid Credentials');
+        }
+        if (callback?.ok && !callback?.error){
+            toast.success('logged in!')
+        }
+    })
+    .finally(() => setIsLoading(false));
 }
 
     return (
