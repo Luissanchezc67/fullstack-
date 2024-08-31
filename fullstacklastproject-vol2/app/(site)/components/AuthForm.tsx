@@ -220,7 +220,7 @@ const socialAction = (action: string) =>{
                             text-gray-500
                             ">
                                 <div>
-                                    {variant == 'LOGIN' ? 'New to Messenger?' : 'Already have an account?' }
+                                    {variant == 'LOGIN' ? 'New  to app?' : 'Already have an account?' }
                                 </div>
                                 <div
                                     onClick={toggleVariant}
