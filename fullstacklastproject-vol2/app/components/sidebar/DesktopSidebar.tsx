@@ -23,8 +23,8 @@ const  DesktopSidebar = () => {
                 lg:bg-white
                 lg:border-r-[1px]
                 lg:pb-4
-                lg-flex
-                lg-flex-col
+                lg:flex
+                lg:flex-col
                 justify-between
             ">
                 <nav

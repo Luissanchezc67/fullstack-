@@ -25,7 +25,7 @@ const useRoutes = () => {
         active: pathname == '/users'
     },
     {
-        laber: 'Logout',
+        label: 'Logout',
         href: '#',
         onClick: () => signOut(),
         icon: HiArrowLeftOnRectangle

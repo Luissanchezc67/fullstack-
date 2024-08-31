@@ -13,7 +13,7 @@ const EmptyState = ( )=> {
 
         "
         >
-            <div className="text-center items-center flex flex-col responsive">
+            <div className="text-center items-center flex flex-col">
                 <h3
                     className="
                         mt-2
