@@ -33,7 +33,7 @@ model User{
 
 
   accounts Account[]
-  message Message[]
+  messages Message[]
 }
 
 model Account {
