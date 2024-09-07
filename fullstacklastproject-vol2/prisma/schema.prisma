@@ -83,10 +83,10 @@ seen User[] @relation("Seen", fields: [seenIds], references: [id])
 
 
 conversationId String @db.ObjectId
-conversastion Conversation @relation(fields: [conversationId], references: [id])
+conversation Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
 
 
-senderId String[] @db.ObjectId
+senderId String @db.ObjectId
 sender User @relation(fields: [senderId], references: [id], onDelete: Cascade)
 
 }
