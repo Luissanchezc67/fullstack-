@@ -7,7 +7,7 @@ interface MessageInputProps{
     id: string;
     type?: string;
     required?: boolean;
-    register: UseFormRegister<FieldValues>
+    register: UseFormRegister<FieldValues>;
     errors: FieldErrors
 }
 
@@ -35,7 +35,7 @@ const MessageInput: React.FC<MessageInputProps> = ({
                     bg-neutral-100
                     w-full
                     rounded-full
-                    fpcus:outline-none
+                    focus:outline-none
                "
             />
         </div>

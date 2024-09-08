@@ -24,8 +24,8 @@ model User{
   createAt DateTime @default(now())
   updateAt DateTime @updatedAt
 
-  conversationsIds String[] @db.ObjectId
-  conversations Conversation[] @relation(fields: [conversationsIds], references: [id])
+  conversationIds String[] @db.ObjectId
+  conversations Conversation[] @relation(fields: [conversationIds], references: [id])
 
 
   seenMessagesIds String[] @db.ObjectId
