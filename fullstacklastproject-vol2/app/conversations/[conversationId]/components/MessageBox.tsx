@@ -81,7 +81,7 @@ const MessageBox: React.FC<MessageBoxProps> = ({
                         className="
                                 text-xs
                                 font-light
-                                text-gray-100
+                                text-gray-500
                             "
                     >
                         {`Seen by ${seenList}`}

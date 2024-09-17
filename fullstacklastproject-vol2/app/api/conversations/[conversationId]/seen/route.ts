@@ -8,7 +8,8 @@ interface Iparams {
 
 };
 
-export async function POST(reques:Request,
+export async function POST(
+    request:Request,
     { params }: {params: Iparams }
 ) {
     try {
@@ -20,7 +21,7 @@ export async function POST(reques:Request,
         if (!currentUser?.id || !currentUser?.email) {
             return new NextResponse('Unauthorized' , {status: 401});
         }
-
+            //busca la conversacion
         const conversation = await prisma.conversation.findUnique({
             where: {
                 id: conversationId
