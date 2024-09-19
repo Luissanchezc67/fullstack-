@@ -3,14 +3,14 @@ import { NextResponse } from "next/server";
 import prisma from "@/app/libs/prismadb"
 
 
-interface Iparams {
+interface IParams {
     conversationId?: string;
 
 };
 
 export async function POST(
-    request:Request,
-    { params }: {params: Iparams }
+    request: Request,
+    { params }: {params: IParams }
 ) {
     try {
         const currentUser = await getCurrentUser();
@@ -37,7 +37,7 @@ export async function POST(
         });
 
         if (!conversation) {
-            return new NextResponse('Invalid ID', {status: 500});
+            return new NextResponse('Invalid ID', {status: 400});
         }
 
 
