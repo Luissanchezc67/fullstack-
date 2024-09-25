@@ -3,10 +3,11 @@
 import useOtherUser from "@/app/hooks/useOtherUser";
 import { Conversation, User } from "@prisma/client";
 import { format } from "date-fns";
-import { Fragment, useMemo } from "react";
+import { Fragment, useMemo, useState } from "react";
 import {Dialog, DialogPanel, Transition, TransitionChild } from "@headlessui/react"
 import { IoClose, IoTrash} from "react-icons/io5"
 import Avatar from "@/app/components/Avatar";
+import Modal from "@/app/components/Modal";
 
 interface ProfileDrawerProps {
     isOpen: boolean;
@@ -22,6 +23,7 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
     data
 }) => {
     const otherUser = useOtherUser(data) ; 
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
 
     const joinedDate = useMemo(() => {
@@ -41,6 +43,14 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
     },[data]);
     return ( 
         <>
+            <Modal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen (false)}
+            >
+                <div  className="bg-white p-5">
+
+                </div>
+            </Modal>
             <Transition show={isOpen} as={Fragment}>
                 <Dialog as="div" className="relative z-50" onClose={onClose}>
                     <TransitionChild
@@ -175,6 +185,7 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
                                                     </div>
                                                     <div className="flex gap-10 my-8">
                                                         <div 
+                                                            onClick={() => setIsModalOpen(true)}
                                                             className="
                                                                 flex
                                                                 flex-col
@@ -185,11 +196,13 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
                                                             "
                                                         >
                                                             <div
+                                                                
                                                                 className="
                                                                     w-10
                                                                     h-10
                                                                     bg-neutral-100
                                                                     rounded-full
+                                                                    flex
                                                                     items-center
                                                                     justify-center
 
